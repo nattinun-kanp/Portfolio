@@ -1,0 +1,121 @@
+/* ตั้งค่าให้ body ไม่มีมาร์จิ้นและพื้นหลังดำ */
+body {
+  display: flex;
+  justify-content: center; /* จัดข้อความให้กึ่งกลางในแนวนอน */
+  align-items: center; /* จัดข้อความให้กึ่งกลางในแนวตั้ง */
+  height: 100vh; 
+  margin: 0;
+  background: #000;
+}
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  height: 60px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.459); 
+}
+
+.navbar-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.navbar-menu .aboutme{
+  margin-left: auto;
+  margin-right: 70px;
+}
+
+.navbar-menu .projects {
+  margin-right: 70px;
+}
+
+.navbar-menu .event {
+  margin-right: 70px;
+}
+
+.navbar-menu .contact {
+  margin-right: 70px;
+}
+
+
+.navbar-menu li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5em;
+  transition: color 0.2s, border-bottom 0.2s;
+  padding: -20px 10px;
+  border-radius: 5px 5px 0 0;
+  position: relative;
+}
+
+
+/* เส้นขีดใต้ที่เมนูเมื่อ hover */
+.navbar-menu li a::after {
+  content: "";
+  display: block;
+  margin: 0 auto;
+  height: 3px;
+  width: 0;
+  background: #ffffff;
+  transition: width 0.3s;
+  border-radius: 4px;
+}
+
+.navbar-menu li a:hover::after {
+  width: 70%;
+}
+
+
+/* ตั้งค่า canvas ให้เต็มหน้าจอ */
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.center-content {
+  position: absolute;
+  top: 70px; 
+  left: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+}
+
+h1 {
+  position: static;
+  font-size: 3rem;
+  color: white;
+  text-shadow: 0 0 10px rgba(255,255,255,0.7);
+  margin-bottom: 18px;
+}
+
+h2 {
+  position: static;
+  font-size: 1.2rem;
+  color: #e5e5fa;
+  margin-bottom: 0px;
+  font-weight: 400;
+}
+
+.intro {
+  max-width: 480px;
+  color: #e5e5fa;
+  font-size: 1.08rem;
+  text-align: center;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
