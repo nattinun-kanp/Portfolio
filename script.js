@@ -92,4 +92,3 @@ function createShootingStar() {
 }
 
 setInterval(createShootingStar, 5000); // สร้างดาวตกทุก 5 วินาที
-
