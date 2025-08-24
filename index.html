@@ -8,7 +8,7 @@
 </head>
 <body>
   <canvas id="canvas"></canvas>
-  
+
   <nav class="navbar">
     <ul class="navbar-menu">
       <li><a href="#">Nattinun.Kanp</a></li>
@@ -28,20 +28,40 @@
     </p>
   </div>
 
-   <!-- 3D Earth Model -->
-  <model-viewer src="scene.gltf"
-    alt="Planet Earth 3D model"
-    auto-rotate
-    camera-controls
-    style="width: 400px; height: 400px;">
-  </model-viewer>
+<!-- 3D Earth Model -->
+
+<!-- โลกซ้าย -->
+<model-viewer class="earth-left" src="planet_left/scene.gltf"
+  alt="Planet Earth 3D model"
+  auto-rotate
+  camera-controls
+  style="width: 250px; height: 250px;">
+</model-viewer>
+
+<!-- โลกหลัก -->
+<model-viewer class="earth-main" src="planet_earth/scene.gltf"
+  alt="Planet Earth 3D model"
+  auto-rotate
+  camera-controls
+  style="width: 900px; height: 900px;">
+</model-viewer>
+
+
+<!-- โลกขวา -->
+<model-viewer class="earth-right" src="planet_saturn/scene.gltf"
+  alt="Planet Earth 3D model"
+  auto-rotate
+  camera-controls
+  style="width: 400px; height: 400px;">
+</model-viewer>
+
 
   <canvas id="canvas"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script src="script.js"></script>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
- 
+
 
 </body>
 </html>

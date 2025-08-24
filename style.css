@@ -127,10 +127,25 @@ h2 {
   margin-bottom: 0;
 }
 
-model-viewer {
+.earth-left {
+  position: absolute;
+  left: 40px;
+  top: 400px;
+  z-index: 10;
+}
+
+.earth-main {
   display: block;
   margin: 0 auto;    
-  margin-top: 200px;       
+  margin-top: 1200px;       
   width: 400px;            
   height: 400px;
 }
+
+.earth-right {
+  position: absolute;
+  right: 40px;
+  top: 300px;
+  z-index: 10;
+}
+
