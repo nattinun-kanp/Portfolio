@@ -92,3 +92,273 @@ function createShootingStar() {
 }
 
 setInterval(createShootingStar, 5000); // สร้างดาวตกทุก 5 วินาที
+
+// About Me Popup functionality
+const aboutPopup = document.getElementById('aboutPopup');
+const aboutBtn = document.querySelector('.about-btn');
+const closeBtns = document.querySelectorAll('.close-btn');
+
+// Contact Popup functionality
+const contactPopup = document.getElementById('contactPopup');
+const contactBtn = document.querySelector('.contact-btn');
+
+// Open About Me popup
+aboutBtn.addEventListener('click', () => {
+  aboutPopup.style.display = 'flex';
+});
+
+// Open Contact popup
+contactBtn.addEventListener('click', () => {
+  contactPopup.style.display = 'flex';
+});
+
+// Close popup when clicking close button
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    aboutPopup.style.display = 'none';
+    contactPopup.style.display = 'none';
+  });
+});
+
+// Close popup when clicking outside
+aboutPopup.addEventListener('click', (e) => {
+  if (e.target === aboutPopup) {
+    aboutPopup.style.display = 'none';
+  }
+});
+
+contactPopup.addEventListener('click', (e) => {
+  if (e.target === contactPopup) {
+    contactPopup.style.display = 'none';
+  }
+});
+
+// Close popup with ESC key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (aboutPopup.style.display === 'flex') {
+      aboutPopup.style.display = 'none';
+    }
+    if (contactPopup.style.display === 'flex') {
+      contactPopup.style.display = 'none';
+    }
+  }
+});
+
+// Projects Popup functionality
+const projectsPopup = document.getElementById('projectsPopup');
+const projectsBtn = document.querySelector('.projects-btn');
+
+// Projects button event listener is now handled inside initProjectsUI()
+
+// Ensure close buttons also close Projects popup
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (projectsPopup) projectsPopup.style.display = 'none';
+  });
+});
+
+// Close projects popup when clicking outside
+if (projectsPopup) {
+  projectsPopup.addEventListener('click', (e) => {
+    if (e.target === projectsPopup) {
+      projectsPopup.style.display = 'none';
+    }
+  });
+}
+
+// Extend ESC to close projects popup
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (projectsPopup && projectsPopup.style.display === 'flex') {
+      projectsPopup.style.display = 'none';
+    }
+  }
+});
+
+// -------- Projects: Tabs & Multi-Gallery --------
+(function initProjectsUI(){
+  if (!projectsPopup) return;
+
+  const tabBtns = projectsPopup.querySelectorAll('.tab-btn');
+  const sections = projectsPopup.querySelectorAll('.project-section');
+
+  // เก็บ state แยกต่อโปรเจกต์
+  const galleries = new Map(); // key: sectionId, value: {slides, dots, prev, next, index}
+
+  function initGalleryForSection(section){
+    const stage = section.querySelector('.gallery-stage');
+    if (!stage) return;
+
+    const slides = Array.from(stage.querySelectorAll('.gallery-slide'));
+    const dots = Array.from(section.querySelectorAll('.gallery-dots .dot'));
+    const prev = section.querySelector('.gallery-prev');
+    const next = section.querySelector('.gallery-next');
+
+    const state = { slides, dots, prev, next, index: 0, autoSlideTimer: null, isAutoSliding: true };
+    galleries.set(section.id, state);
+
+    function render(idx){
+      state.index = (idx + state.slides.length) % state.slides.length;
+      state.slides.forEach((s,i)=> s.classList.toggle('active', i === state.index));
+      if (state.dots.length){
+        state.dots.forEach((d,i)=> d.classList.toggle('active', i === state.index));
+      }
+    }
+    
+    function startAutoSlide(){
+      if (state.autoSlideTimer) clearInterval(state.autoSlideTimer);
+      state.autoSlideTimer = setInterval(() => {
+        if (state.isAutoSliding) {
+          render(state.index + 1);
+        }
+      }, 5000);
+    }
+    
+    function stopAutoSlide(){
+      state.isAutoSliding = false;
+      if (state.autoSlideTimer) {
+        clearInterval(state.autoSlideTimer);
+        state.autoSlideTimer = null;
+      }
+    }
+    
+    function resumeAutoSlide(){
+      state.isAutoSliding = true;
+      startAutoSlide();
+    }
+    
+    // expose for listeners
+    state.render = render;
+    state.stopAutoSlide = stopAutoSlide;
+    state.resumeAutoSlide = resumeAutoSlide;
+
+    // listeners with auto-slide pause
+    if (prev) {
+      prev.addEventListener('click', ()=> {
+        stopAutoSlide();
+        render(state.index - 1);
+        setTimeout(resumeAutoSlide, 3000);
+      });
+    }
+    if (next) {
+      next.addEventListener('click', ()=> {
+        stopAutoSlide();
+        render(state.index + 1);
+        setTimeout(resumeAutoSlide, 3000);
+      });
+    }
+    if (dots.length){
+      dots.forEach((d,i)=> {
+        d.addEventListener('click', ()=> {
+          stopAutoSlide();
+          render(i);
+          setTimeout(resumeAutoSlide, 3000);
+        });
+      });
+    }
+
+    // pause auto-slide on hover
+    stage.addEventListener('mouseenter', stopAutoSlide);
+    stage.addEventListener('mouseleave', resumeAutoSlide);
+
+    // init
+    render(0);
+    startAutoSlide();
+  }
+
+  function activateTab(projectId){
+    // ปรับปุ่ม
+    tabBtns.forEach(btn=>{
+      const active = btn.getAttribute('data-project') === projectId;
+      btn.classList.toggle('active', active);
+      btn.setAttribute('aria-selected', String(active));
+    });
+
+    // สลับ section
+    sections.forEach(sec=>{
+      const active = sec.dataset.project === projectId;
+      sec.classList.toggle('active', active);
+      if (active){
+        // focus ให้หน้าจออ่านออก/และพร้อมใช้คีย์บอร์ด
+        setTimeout(()=> {
+          const firstSlide = sec.querySelector('.gallery-image');
+          if (firstSlide) firstSlide.focus?.();
+        },0);
+      }
+    });
+
+    // ถ้ายังไม่เคย init แกลเลอรีของ section นี้ ให้ init ตอนนี้
+    const target = projectsPopup.querySelector(`.project-section[data-project="${projectId}"]`);
+    if (target && !galleries.has(target.id)){
+      initGalleryForSection(target);
+    }
+  }
+
+  // init ทุก section ที่ active อยู่แล้ว
+  sections.forEach(sec=>{
+    if (sec.classList.contains('active')) initGalleryForSection(sec);
+  });
+
+  // tab listeners
+  tabBtns.forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const pid = btn.getAttribute('data-project');
+      activateTab(pid);
+    });
+  });
+
+  // keyboard navigation เฉพาะตอน popup เปิด
+  document.addEventListener('keydown', (e)=>{
+    if (projectsPopup.style.display !== 'flex') return;
+
+    // หา section ปัจจุบัน
+    const current = projectsPopup.querySelector('.project-section.active');
+    if (!current) return;
+
+    const state = galleries.get(current.id);
+    if (!state) return;
+
+    if (e.key === 'ArrowLeft')  state.render(state.index - 1);
+    if (e.key === 'ArrowRight') state.render(state.index + 1);
+  });
+
+  // เมื่อกดปุ่มเมนู Projects ให้เปิด popup + โชว์แท็บแรกเสมอ
+  if (projectsBtn){
+    projectsBtn.addEventListener('click', (e)=>{
+      e.preventDefault();
+      projectsPopup.style.display = 'flex';
+      const first = tabBtns[0]?.getAttribute('data-project');
+      if (first) activateTab(first);
+    });
+  }
+})();
+
+// Contact form submission
+const messageForm = document.querySelector('.message-form');
+if (messageForm) {
+  messageForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // Get form data
+    const firstName = document.getElementById('firstName').value;
+    const lastName = document.getElementById('lastName').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
+    
+    // Simple validation
+    if (!firstName || !lastName || !email || !message) {
+      alert('กรุณากรอกข้อมูลให้ครบถ้วน');
+      return;
+    }
+    
+    // Show success message
+    alert('ขอบคุณสำหรับข้อความของคุณ! เราจะติดต่อกลับโดยเร็วที่สุด');
+    
+    // Reset form
+    messageForm.reset();
+    
+    // Close popup
+    contactPopup.style.display = 'none';
+  });
+}

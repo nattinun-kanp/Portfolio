@@ -12,20 +12,97 @@
   <nav class="navbar">
     <ul class="navbar-menu">
       <li><a href="#">Nattinun.Kanp</a></li>
-      <li class="aboutme"><a href="#">About me</a></li>
-      <li class="projects"><a href="#">projects</a></li>
+      <li class="aboutme"><a href="#" class="about-btn">About me</a></li>
+      <li class="projects"><a href="#" class="projects-btn">projects</a></li>
       <li class="event"><a href="#">event</a></li>
-      <li class="contact"><a href="#">contact</a></li>
+      <li class="contact"><a href="#" class="contact-btn">contact</a></li>
     </ul>
     </nav>
 
   <div class="center-content">
     <h1>Welcome to My Galaxy</h1>
-    <h2>Hello, I’m Nattinun Kanpai</h2>
+    <h2>Hello, I'm Nattinun Kanpai</h2>
     <p class="intro">
       Welcome to my galaxy of ideas where creativity orbits passion, and every project is a new star waiting to shine.<br>
-      Let’s explore the universe of design and technology together.
+      Let's explore the universe of design and technology together.
     </p>
+  </div>
+
+  <!-- About Me Popup -->
+  <div id="aboutPopup" class="popup-overlay">
+    <div class="popup-content">
+      <span class="close-btn">&times;</span>
+      <div class="popup-body">
+        <img src="profile-image.jpg" alt="Profile" class="profile-image">
+        <h2 class="popup-title">About me</h2>
+        <p class="about-text">I’m Nattinun Kanpai, a Computer Science student at the School of Information Technology, Bangkok University. I am deeply passionate about technology, computers, and artificial intelligence. I enjoy exploring new experiences and learning about emerging knowledge that challenges me to grow.</p>
+      </div>
+     </div>
+   </div>
+
+  <!-- Contact Popup -->
+  <div id="contactPopup" class="popup-overlay">
+    <div class="popup-content">
+      <span class="close-btn">&times;</span>
+      <div class="popup-body">
+        <h2 class="popup-title">Let's Connect</h2>
+        
+        <div class="contact-info">
+          <div class="contact-section">
+            <h4>Phone</h4>
+            <p class="contact-detail">094-940-1275</p>
+          </div>
+          
+          <div class="contact-section">
+            <h4>Email</h4>
+            <p class="contact-detail">nattinun.kanp@gmail.com</p>
+          </div>
+          
+          <div class="contact-section">
+            <h4>Social Media</h4>
+            <div class="social-links">
+              <a href="https://www.facebook.com/NZDNest/" target="_blank" class="social-link facebook">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                Facebook
+              </a>
+              <a href="https://www.instagram.com/nest.natti/" target="_blank" class="social-link instagram">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                Instagram
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <h4>Send Message</h4>
+          <form class="message-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
+              </div>
+              <div class="form-group">
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="send-btn">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
   </div>
 
 <!-- 3D Earth Model -->
@@ -35,6 +112,8 @@
   alt="Planet Earth 3D model"
   auto-rotate
   camera-controls
+  disable-zoom
+  disable-pan
   style="width: 250px; height: 250px;">
 </model-viewer>
 
@@ -43,6 +122,8 @@
   alt="Planet Earth 3D model"
   auto-rotate
   camera-controls
+  disable-zoom
+  disable-pan
   style="width: 900px; height: 900px;">
 </model-viewer>
 
@@ -52,11 +133,94 @@
   alt="Planet Earth 3D model"
   auto-rotate
   camera-controls
+  disable-zoom
+  disable-pan
   style="width: 400px; height: 400px;">
 </model-viewer>
 
 
   <canvas id="canvas"></canvas>
+
+  <!-- Projects Popup -->
+  <div id="projectsPopup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="projectsTitle">
+    <div class="popup-content">
+      <span class="close-btn" aria-label="Close">&times;</span>
+      <div class="popup-body">
+        <h2 class="popup-title" id="projectsTitle">Projects</h2>
+
+        <!-- Project Tabs -->
+        <nav class="projects-tabs" aria-label="Project Categories">
+          <button class="tab-btn active" data-project="aquarium" aria-controls="aquarium" aria-selected="true" role="tab">🌊 Aquarium</button>
+          <button class="tab-btn" data-project="mobileapp" aria-controls="mobileapp" aria-selected="false" role="tab">📱 Mobile App</button>
+
+        </nav>
+
+        <!-- Project Sections -->
+        <div class="project-panels" role="tabpanel">
+
+          <!-- AQUARIUM -->
+          <section class="project-section active" id="aquarium" data-project="aquarium">
+            <h3 class="project-title">Smart Aquarium Project</h3>
+            <p class="project-desc">This project involves the development of a smart aquarium system using an ESP32 microcontroller. The system features remote fish feeding via a mobile application, real-time monitoring of water temperature, pH, and waste levels, and automatic temperature regulation.</p>
+
+            <div class="gallery-container" data-gallery="aquarium">
+              <button class="gallery-nav gallery-prev" aria-label="Previous slide">‹</button>
+              <div class="gallery-stage">
+                <div class="gallery-slide active">
+                  <img src="aquarium02.png" alt="Aquarium screen #1" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                  <img src="aquarium01.png" alt="Aquarium screen #2" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                  <img src="aquarium03.jpg" alt="Aquarium screen #3" class="gallery-image">
+                </div>
+              </div>
+              <button class="gallery-nav gallery-next" aria-label="Next slide">›</button>
+            </div>
+
+            <div class="gallery-dots" aria-label="Aquarium pagination">
+              <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+              <button class="dot" data-index="1" aria-label="Slide 2"></button>
+              <button class="dot" data-index="2" aria-label="Slide 3"></button>
+            </div>
+          </section>
+
+          <!-- MOBILE APP -->
+          <section class="project-section" id="mobileapp" data-project="mobileapp">
+            <h3 class="project-title">Ride 'N' Guide</h3>
+            <p class="project-desc">Ride 'N' Guide is a personal travel planning assistant powered by AI, designed to help tourists plan their trips efficiently. It provides accurate, tailored recommendations such as attractions, convenient routes, weather updates, and cost estimates—reducing research time and making travel easier and more enjoyable. The system integrates external APIs like Google Maps and OpenWeather to ensure up-to-date and reliable information. Users can explore destinations, check optimal routes, and view weather conditions all in one place, ensuring smooth and personalized travel planning.</p>
+
+            <div class="gallery-container" data-gallery="mobileapp">
+              <button class="gallery-nav gallery-prev" aria-label="Previous slide">‹</button>
+              <div class="gallery-stage">
+                <div class="gallery-slide active">
+                  <img src="Ride 'N' Guide 01.jpg" alt="Ride 'N' Guide screen #1" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                  <img src="Ride 'N' Guide 02.jpg" alt="Ride 'N' Guide screen #2" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                  <img src="Ride 'N' Guide 03.jpg" alt="Ride 'N' Guide screen #3" class="gallery-image">
+                </div>
+              </div>
+              <button class="gallery-nav gallery-next" aria-label="Next slide">›</button>
+            </div>
+
+            <div class="gallery-dots" aria-label="Mobile App pagination">
+              <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+              <button class="dot" data-index="1" aria-label="Slide 2"></button>
+              <button class="dot" data-index="2" aria-label="Slide 3"></button>
+            </div>
+          </section>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
   <script src="script.js"></script>
   <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
