@@ -1,13 +1,16 @@
 /* ตั้งค่าให้ body ไม่มีมาร์จิ้นและพื้นหลังดำ */
+html, body {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* ป้องกันการเลื่อนหน้าจอ */
+}
+
 body {
   display: flex;
   justify-content: center; /* จัดข้อความให้กึ่งกลางในแนวนอน */
   align-items: center; /* จัดข้อความให้กึ่งกลางในแนวตั้ง */
-  height: 100vh; 
-  margin: 0;
   background: #000;
-  scroll-behavior: smooth;
-  overflow: hidden; /* ปิดการเลื่อนทั้งแนวนอนและแนวตั้ง */
 }
 
 
@@ -158,7 +161,7 @@ h2 {
 .earth-main {
   display: block;
   margin: 0 auto;    
-  margin-top: 50px; /* ลดระยะห่างให้อยู่ในหน้าจอ */       
+  margin-top: 1200px;       
   width: 400px;            
   height: 400px;
 }
