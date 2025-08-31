@@ -5,6 +5,26 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+
+
+// Parallax Effect for 3D Models
+let parallaxElements = [];
+window.addEventListener('load', () => {
+  parallaxElements = document.querySelectorAll('model-viewer');
+});
+
+document.addEventListener('mousemove', (e) => {
+  const mouseXPercent = (e.clientX / window.innerWidth) * 100;
+  const mouseYPercent = (e.clientY / window.innerHeight) * 100;
+  
+  parallaxElements.forEach((element, index) => {
+    const speed = (index + 1) * 0.5;
+    const x = (mouseXPercent - 50) * speed * 0.1;
+    const y = (mouseYPercent - 50) * speed * 0.1;
+    element.style.transform = `translate(${x}px, ${y}px) rotateY(${x * 0.1}deg)`;
+  });
+});
+
 const stars = [];
 const starCount = 250; // จำนวนดาวที่จะแสดง
 const shootingStars = []; // สำหรับดาวตก
@@ -340,25 +360,90 @@ if (messageForm) {
   messageForm.addEventListener('submit', (e) => {
     e.preventDefault();
     
-    // Get form data
-    const firstName = document.getElementById('firstName').value;
-    const lastName = document.getElementById('lastName').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
+    const name = messageForm.querySelector('input[name="name"]').value;
+    const email = messageForm.querySelector('input[name="email"]').value;
+    const message = messageForm.querySelector('textarea[name="message"]').value;
     
-    // Simple validation
-    if (!firstName || !lastName || !email || !message) {
+    if (name && email && message) {
+      // Add loading animation
+      const submitBtn = messageForm.querySelector('button[type="submit"]');
+      const originalText = submitBtn.textContent;
+      submitBtn.textContent = 'กำลังส่ง...';
+      submitBtn.disabled = true;
+      
+      setTimeout(() => {
+        alert('ขอบคุณสำหรับข้อความของคุณ! เราจะติดต่อกลับโดยเร็วที่สุด');
+        messageForm.reset();
+        submitBtn.textContent = originalText;
+        submitBtn.disabled = false;
+        contactPopup.style.display = 'none';
+      }, 1500);
+    } else {
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
-      return;
     }
-    
-    // Show success message
-    alert('ขอบคุณสำหรับข้อความของคุณ! เราจะติดต่อกลับโดยเร็วที่สุด');
-    
-    // Reset form
-    messageForm.reset();
-    
-    // Close popup
-    contactPopup.style.display = 'none';
   });
 }
+
+// Typing Animation Effect
+function typeWriter(element, text, speed = 100) {
+  let i = 0;
+  element.innerHTML = '';
+  
+  function type() {
+    if (i < text.length) {
+      element.innerHTML += text.charAt(i);
+      i++;
+      setTimeout(type, speed);
+    }
+  }
+  type();
+}
+
+// Scroll Animation Observer
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, observerOptions);
+
+// Apply scroll animation to elements
+window.addEventListener('load', () => {
+  const animateElements = document.querySelectorAll('.skill-item, .project-section, .popup-content');
+  animateElements.forEach(el => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(30px)';
+    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    observer.observe(el);
+  });
+});
+
+// Enhanced Button Hover Effects
+document.addEventListener('DOMContentLoaded', () => {
+  const buttons = document.querySelectorAll('button, .btn, .tab-btn');
+  
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', () => {
+      button.style.transform = 'scale(1.05)';
+      button.style.boxShadow = '0 5px 15px rgba(0, 255, 255, 0.3)';
+    });
+    
+    button.addEventListener('mouseleave', () => {
+      button.style.transform = 'scale(1)';
+      button.style.boxShadow = 'none';
+    });
+  });
+});
+
+// Window Resize Handler
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
