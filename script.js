@@ -1,3 +1,27 @@
+// Loading Screen Controller
+window.addEventListener('load', () => {
+  const loadingScreen = document.getElementById('loadingScreen');
+  const progressBar = document.getElementById('progressBar');
+  
+  let progress = 0;
+  const loadingInterval = setInterval(() => {
+    progress += Math.random() * 15 + 5;
+    if (progress > 100) progress = 100;
+    
+    progressBar.style.width = progress + '%';
+    
+    if (progress >= 100) {
+      clearInterval(loadingInterval);
+      setTimeout(() => {
+        loadingScreen.classList.add('fade-out');
+        setTimeout(() => {
+          loadingScreen.style.display = 'none';
+        }, 500);
+      }, 800);
+    }
+  }, 100);
+});
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 
