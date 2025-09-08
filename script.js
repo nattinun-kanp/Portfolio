@@ -196,6 +196,67 @@ document.addEventListener('keydown', (e) => {
   }
 });
 
+// Events Popup functionality
+const eventsPopup = document.getElementById('eventsPopup');
+const eventBtn = document.querySelector('.event a');
+
+// Event button click listener
+if (eventBtn) {
+  eventBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (eventsPopup) {
+      eventsPopup.style.display = 'flex';
+    }
+  });
+}
+
+// Ensure close buttons also close Events popup
+closeBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (eventsPopup) eventsPopup.style.display = 'none';
+  });
+});
+
+// Close events popup when clicking outside
+if (eventsPopup) {
+  eventsPopup.addEventListener('click', (e) => {
+    if (e.target === eventsPopup) {
+      eventsPopup.style.display = 'none';
+    }
+  });
+}
+
+// Extend ESC to close events popup
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if (eventsPopup && eventsPopup.style.display === 'flex') {
+      eventsPopup.style.display = 'none';
+    }
+  }
+});
+
+// Toggle Event Details Function
+function toggleEventDetails(headerElement) {
+  const eventContent = headerElement.nextElementSibling;
+  const expandIcon = headerElement.querySelector('.expand-icon');
+  
+  if (eventContent.classList.contains('expanded')) {
+    // ย่อรายละเอียด
+    eventContent.classList.remove('expanded');
+    expandIcon.classList.remove('rotated');
+    setTimeout(() => {
+      eventContent.style.display = 'none';
+    }, 400);
+  } else {
+    // ขยายรายละเอียด
+    eventContent.style.display = 'grid';
+    setTimeout(() => {
+      eventContent.classList.add('expanded');
+      expandIcon.classList.add('rotated');
+    }, 10);
+  }
+}
+
 // -------- Projects: Tabs & Multi-Gallery --------
 (function initProjectsUI(){
   if (!projectsPopup) return;
@@ -357,27 +418,60 @@ document.addEventListener('keydown', (e) => {
 // Contact form submission
 const messageForm = document.querySelector('.message-form');
 if (messageForm) {
-  messageForm.addEventListener('submit', (e) => {
+  messageForm.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    const name = messageForm.querySelector('input[name="name"]').value;
+    const firstName = messageForm.querySelector('input[name="firstName"]').value;
+    const lastName = messageForm.querySelector('input[name="lastName"]').value;
     const email = messageForm.querySelector('input[name="email"]').value;
     const message = messageForm.querySelector('textarea[name="message"]').value;
     
-    if (name && email && message) {
+    if (firstName && lastName && email && message) {
       // Add loading animation
       const submitBtn = messageForm.querySelector('button[type="submit"]');
       const originalText = submitBtn.textContent;
       submitBtn.textContent = 'กำลังส่ง...';
       submitBtn.disabled = true;
       
-      setTimeout(() => {
-        alert('ขอบคุณสำหรับข้อความของคุณ! เราจะติดต่อกลับโดยเร็วที่สุด');
-        messageForm.reset();
+      try {
+        // Send email via API
+        const response = await fetch('http://localhost:3001/api/contact', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            message: message
+          })
+        });
+        
+        const result = await response.json();
+        
+        if (result.success) {
+          alert('ขอบคุณสำหรับข้อความของคุณ! อีเมลถูกส่งเรียบร้อยแล้ว เราจะติดต่อกลับโดยเร็วที่สุด');
+          messageForm.reset();
+          contactPopup.style.display = 'none';
+        } else {
+          throw new Error(result.message || 'เกิดข้อผิดพลาดในการส่งอีเมล');
+        }
+        
+      } catch (error) {
+        console.error('Error sending email:', error);
+        
+        // Check if it's a network error (backend not running)
+        if (error.name === 'TypeError' && error.message.includes('fetch')) {
+          alert('ไม่สามารถเชื่อมต่อกับเซิร์ฟเวอร์ได้ กรุณาตรวจสอบว่า backend server ทำงานอยู่ที่ port 3001');
+        } else {
+          alert('เกิดข้อผิดพลาดในการส่งอีเมล: ' + error.message);
+        }
+      } finally {
+        // Reset button state
         submitBtn.textContent = originalText;
         submitBtn.disabled = false;
-        contactPopup.style.display = 'none';
-      }, 1500);
+      }
     } else {
       alert('กรุณากรอกข้อมูลให้ครบถ้วน');
     }
