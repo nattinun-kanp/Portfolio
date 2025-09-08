@@ -10,14 +10,21 @@
   <canvas id="canvas"></canvas>
 
   <nav class="navbar">
-    <ul class="navbar-menu">
-      <li><a href="#">Nattinun.Kanp</a></li>
+    <div class="navbar-brand">
+      <a href="#">Nattinun.Kanp</a>
+    </div>
+    <div class="hamburger-menu" id="hamburgerMenu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <ul class="navbar-menu" id="navbarMenu">
       <li class="aboutme"><a href="#" class="about-btn">About me</a></li>
       <li class="projects"><a href="#" class="projects-btn">projects</a></li>
       <li class="event"><a href="#">event</a></li>
       <li class="contact"><a href="#" class="contact-btn">contact</a></li>
     </ul>
-    </nav>
+  </nav>
 
   <div class="center-content">
     <h1>Welcome to My Galaxy</h1>
@@ -209,6 +216,8 @@
         <nav class="projects-tabs" aria-label="Project Categories">
           <button class="tab-btn active" data-project="aquarium" aria-controls="aquarium" aria-selected="true" role="tab">🌊 Aquarium</button>
           <button class="tab-btn" data-project="mobileapp" aria-controls="mobileapp" aria-selected="false" role="tab">📱 Mobile App</button>
+          <button class="tab-btn" data-project="dataanalysis" aria-controls="dataanalysis" aria-selected="false" role="tab">📊 Data Analysis</button>
+          <button class="tab-btn" data-project="gamesales" aria-controls="gamesales" aria-selected="false" role="tab">🎮 Game Sales Analysis</button>
 
         </nav>
 
@@ -218,7 +227,27 @@
           <!-- AQUARIUM -->
           <section class="project-section active" id="aquarium" data-project="aquarium">
             <h3 class="project-title">Smart Aquarium Project</h3>
-            <p class="project-desc">This project involves the development of a smart aquarium system using an ESP32 microcontroller. The system features remote fish feeding via a mobile application, real-time monitoring of water temperature, pH, and waste levels, and automatic temperature regulation.</p>
+            <div class="project-content">
+              <p class="project-desc">This project involves the development of a smart aquarium system using an <strong>ESP32 microcontroller</strong>. The system provides comprehensive aquarium management through modern IoT technology.</p>
+              
+              <div class="features-section">
+                <h4 class="features-title">Key Features</h4>
+                <div class="algorithms-list">
+                  <ul>
+                    <li>Remote fish feeding via mobile application</li>
+                    <li>Real-time monitoring of water temperature</li>
+                    <li>pH level monitoring and alerts</li>
+                    <li>Waste level detection</li>
+                    <li>Automatic temperature regulation</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="technology-section">
+                <h4 class="tech-title">Technology Stack</h4>
+                <p class="project-desc">Built with <strong>ESP32 microcontroller</strong> for reliable IoT connectivity, integrated with mobile application for remote control and monitoring capabilities.</p>
+              </div>
+            </div>
 
             <div class="gallery-container" data-gallery="aquarium">
               <button class="gallery-nav gallery-prev" aria-label="Previous slide">‹</button>
@@ -246,7 +275,32 @@
           <!-- MOBILE APP -->
           <section class="project-section" id="mobileapp" data-project="mobileapp">
             <h3 class="project-title">Ride 'N' Guide</h3>
-            <p class="project-desc">Ride 'N' Guide is a personal travel planning assistant powered by AI, designed to help tourists plan their trips efficiently. It provides accurate, tailored recommendations such as attractions, convenient routes, weather updates, and cost estimates—reducing research time and making travel easier and more enjoyable. The system integrates external APIs like Google Maps and OpenWeather to ensure up-to-date and reliable information. Users can explore destinations, check optimal routes, and view weather conditions all in one place, ensuring smooth and personalized travel planning.</p>
+            <div class="project-content">
+              <p class="project-desc">Ride 'N' Guide is a personal travel planning assistant powered by <strong>AI</strong>, designed to help tourists plan their trips efficiently and make travel easier and more enjoyable.</p>
+              
+              <div class="features-section">
+                <h4 class="features-title">Key Features</h4>
+                <div class="algorithms-list">
+                  <ul>
+                    <li>Accurate, tailored recommendations for attractions</li>
+                    <li>Convenient route planning and optimization</li>
+                    <li>Real-time weather updates and forecasts</li>
+                    <li>Cost estimates for travel planning</li>
+                    <li>Personalized travel itinerary creation</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="technology-section">
+                <h4 class="tech-title">Technology Integration</h4>
+                <p class="project-desc">The system integrates external APIs like <strong>Google Maps</strong> and <strong>OpenWeather</strong> to ensure up-to-date and reliable information. Users can explore destinations, check optimal routes, and view weather conditions all in one place.</p>
+              </div>
+              
+              <div class="benefits-section">
+                <h4 class="benefits-title">Benefits</h4>
+                <p class="project-desc">Reduces research time significantly while ensuring smooth and personalized travel planning experience for tourists of all levels.</p>
+              </div>
+            </div>
 
             <div class="gallery-container" data-gallery="mobileapp">
               <button class="gallery-nav gallery-prev" aria-label="Previous slide">‹</button>
@@ -260,6 +314,99 @@
 
             <div class="gallery-dots" aria-label="Mobile App pagination">
               <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+            </div>
+          </section>
+
+          <!-- DATA ANALYSIS -->
+          <section class="project-section" id="dataanalysis" data-project="dataanalysis">
+            <h3 class="project-title">Predicting Fixed Deposit Account Openings Using Data Mining and Machine Learning</h3>
+            <div class="project-content">
+              <p class="project-desc">This research project presented a predictive model using data mining techniques to prepare and refine the dataset. After preprocessing, several machine learning algorithms were applied, including:</p>
+              
+              <div class="algorithms-list">
+                <ul>
+                  <li>Logistic Regression</li>
+                  <li>Decision Tree</li>
+                  <li>Bernoulli Naive Bayes</li>
+                  <li>Linear SVM</li>
+                  <li>XGBoost (Extreme Gradient Boosting)</li>
+                </ul>
+              </div>
+              
+              <p class="project-desc">The analysis focused on predicting <strong>customer fixed deposit account openings</strong>, based on marketing campaign data from a financial institution. The dataset used was <strong>TMCP-02N</strong>, containing <strong>32,951 samples</strong>.</p>
+              
+              <div class="results-section">
+                <h4 class="results-title">Results</h4>
+                <p class="project-desc">From the experiments, <strong>XGBoost achieved the best performance</strong>, with an accuracy of <strong>0.91 (91%)</strong>, and showed a good balance between precision and recall. This demonstrates the model's reliability in predicting customer decisions.</p>
+              </div>
+              
+              <div class="future-work-section">
+                <h4 class="future-title">Future Work</h4>
+                <p class="project-desc">To enhance model performance, additional customer behavioral data such as contact duration and frequency should be included. Moreover, more advanced techniques such as Deep Learning or Cost-sensitive Learning can be explored to handle imbalanced data. Finally, deploying the model in real-world scenarios would help evaluate its practical effectiveness.</p>
+              </div>
+            </div>
+
+            <div class="gallery-container" data-gallery="dataanalysis">
+              <button class="gallery-nav gallery-prev" aria-label="Previous slide">‹</button>
+              <div class="gallery-stage">
+                <div class="gallery-slide active">
+                  <img src="Model Performance Comparison Table.png" alt="Model Performance Comparison Table" class="gallery-image">
+                </div>
+              </div>
+              <button class="gallery-nav gallery-next" aria-label="Next slide">›</button>
+            </div>
+
+            <div class="gallery-dots" aria-label="Data Analysis pagination">
+              <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+            </div>
+          </section>
+
+          <!-- Game Sales Analysis Project -->
+          <section class="project-section" id="gamesales" data-project="gamesales" role="tabpanel" aria-labelledby="gamesales-tab">
+            <h3 class="project-title">Game Sales Data Analysis</h3>
+            <div class="project-content">
+              <p class="project-desc">In this project, I worked with a raw tabular dataset and used <strong>Python</strong> to clean and preprocess the data. This included handling missing values and removing outliers to make the dataset reliable and ready for analysis.</p>
+              
+              <div class="features-section">
+                <h4 class="features-title">Data Processing & Visualization</h4>
+                <ul class="algorithms-list">
+                  <li>Data cleaning and preprocessing with Python</li>
+                  <li>Handling missing values and outlier removal</li>
+                  <li>Created visualizations: bar charts and line graphs</li>
+                  <li>Revealed sales trends and customer preferences</li>
+                </ul>
+              </div>
+              
+              <div class="results-section">
+                <h4 class="results-title">Analysis Results</h4>
+                <p>Applied data analysis techniques to generate insights and predict potential customer segments and future demand. These insights can support better business decision-making for game sales strategies.</p>
+              </div>
+            </div>
+            
+            <div class="gallery-container">
+              <button class="gallery-nav gallery-prev" aria-label="Previous slide">‹</button>
+              <div class="gallery-stage">
+                <div class="gallery-slide active">
+                  <img src="Global Sales by Year.png" alt="Global Sales by Year" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                  <img src="Top 10 best Sell game.png" alt="Top 10 Best Selling Games" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                  <img src="Total Global sales platform.png" alt="Total Global Sales by Platform" class="gallery-image">
+                </div>
+                <div class="gallery-slide">
+                  <img src="Total Global sales.png" alt="Total Global Sales" class="gallery-image">
+                </div>
+              </div>
+              <button class="gallery-nav gallery-next" aria-label="Next slide">›</button>
+            </div>
+
+            <div class="gallery-dots" aria-label="Game Sales Analysis pagination">
+              <button class="dot active" data-index="0" aria-label="Slide 1"></button>
+              <button class="dot" data-index="1" aria-label="Slide 2"></button>
+              <button class="dot" data-index="2" aria-label="Slide 3"></button>
+              <button class="dot" data-index="3" aria-label="Slide 4"></button>
             </div>
           </section>
 

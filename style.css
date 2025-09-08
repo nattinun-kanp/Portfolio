@@ -1,9 +1,14 @@
 /* ตั้งค่าให้ body ไม่มีมาร์จิ้นและพื้นหลังดำ */
+* {
+  color: #fff; /* ตั้งค่าสีข้อความเริ่มต้นเป็นสีขาว */
+}
+
 html, body {
   height: 100vh;
   margin: 0;
   padding: 0;
   overflow: hidden; /* ป้องกันการเลื่อนหน้าจอ */
+  color: #fff; /* ตั้งค่าสีข้อความเป็นสีขาว */
 }
 
 body {
@@ -11,6 +16,7 @@ body {
   justify-content: center; /* จัดข้อความให้กึ่งกลางในแนวนอน */
   align-items: center; /* จัดข้อความให้กึ่งกลางในแนวตั้ง */
   background: #000;
+  color: #fff; /* ตั้งค่าสีข้อความเป็นสีขาว */
 }
 
 
@@ -25,7 +31,56 @@ body {
   top: 0;
   left: 0;
   z-index: 99;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.459); 
+  border-bottom: 2px solid rgba(255, 255, 255, 0.459);
+}
+
+.navbar-brand a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.navbar-brand a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+  z-index: 100;
+}
+
+.hamburger-menu span {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  margin: 3px 0;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.hamburger-menu:hover span {
+  background-color: #00ffff;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+}
+
+/* Hamburger Animation */
+.hamburger-menu.active span:nth-child(1) {
+  transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger-menu.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger-menu.active span:nth-child(3) {
+  transform: rotate(45deg) translate(-5px, -6px);
 }
 
 .navbar-menu {
@@ -52,6 +107,93 @@ body {
 
 .navbar-menu .contact {
   margin-right: 70px;
+}
+
+/* Mobile Responsive */
+@media screen and (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .navbar {
+    padding: 0 20px;
+  }
+  
+  .navbar-menu {
+    position: fixed;
+    top: 60px;
+    left: -150%;
+    width: 100%;
+    height: calc(100vh - 60px);
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 50px;
+    transition: left 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-right: 2px solid rgba(0, 255, 255, 0.3);
+  }
+  
+  .navbar-menu.active {
+    left: 0;
+  }
+  
+  .navbar-menu li {
+    margin: 20px 0;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .navbar-menu .aboutme,
+  .navbar-menu .projects,
+  .navbar-menu .event,
+  .navbar-menu .contact {
+    margin: 20px 0;
+  }
+  
+  .navbar-menu li a {
+    font-size: 1.8em;
+    padding: 15px 0;
+    display: block;
+    width: 100%;
+    border-radius: 0;
+  }
+  
+  .center-content {
+    padding: 0 20px;
+    top: 80px;
+  }
+  
+  h1 {
+    font-size: 2.2rem;
+  }
+  
+  h2 {
+    font-size: 1.1rem;
+  }
+  
+  .intro {
+    font-size: 1rem;
+    max-width: 90%;
+  }
+  
+  /* ซ่อนดาวซ้ายและขวาใน mobile */
+  .earth-left,
+  .earth-right {
+    display: none;
+  }
+  
+  /* ปรับแต่งดาวโลกหลักสำหรับ mobile */
+  .earth-main {
+    width: 300px;
+    height: 300px;
+    margin-top: 100px;
+  }
 }
 
 
@@ -295,9 +437,14 @@ h2 {
   border: 1px solid rgba(78, 205, 196, 0.3);
   border-radius: 6px;
   padding: 10px;
-  color: #e6d7ff;
+  color: #fff !important; /* ตั้งค่าสีข้อความเป็นสีขาว */
   font-size: 14px;
   transition: all 0.3s ease;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(255, 255, 255, 0.6) !important; /* ตั้งค่าสี placeholder เป็นสีขาวโปร่งใส */
 }
 
 .form-group input:focus,
@@ -729,7 +876,7 @@ h2 {
 }
 
 .gallery-image {
-  width: 100%;
+  width: 350px;
   height: auto;
   border-radius: 12px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
@@ -942,7 +1089,52 @@ h2 {
   margin: 0 0 10px;
 }
 
+/* Project Content Styling */
+.project-content {
+  margin-bottom: 20px;
+}
+
+.algorithms-list {
+  margin: 15px 0;
+  padding: 15px;
+  background: rgba(78, 205, 196, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #4ecdc4;
+}
+
+.algorithms-list ul {
+  margin: 0;
+  padding-left: 20px;
+  color: #e5e5fa;
+}
+
+.algorithms-list li {
+  margin: 8px 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+
+.results-section, .future-work-section, .features-section, .technology-section, .benefits-section {
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.results-title, .future-title, .features-title, .tech-title, .benefits-title {
+  color: #4ecdc4;
+  font-size: 1.1rem;
+  margin: 0 0 10px 0;
+  font-weight: 600;
+  text-shadow: 0 0 5px rgba(78, 205, 196, 0.3);
+}
+
+.project-desc strong {
+  color: #4ecdc4;
+  font-weight: 600;
+}
+
 /* แกลเลอรี (ใช้ร่วมกับของเดิมได้) */
-.project-section .gallery-container { margin-top: 8px; }
+.project-section .gallery-container { margin-top: 20px; }
 .project-section .gallery-stage { min-height: 200px; }
 
