@@ -873,6 +873,24 @@ h2 {
   align-items: flex-start;
 }
 
+/* Mobile responsive education layout */
+@media screen and (max-width: 768px) {
+  .education-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .education-period {
+    width: 100%;
+    min-width: unset;
+  }
+  
+  .education-details {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+
 .education-item::before {
   content: '';
   position: absolute;
