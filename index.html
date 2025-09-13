@@ -21,9 +21,6 @@
         <div class="orbit orbit-3">
           <div class="planet planet-3"></div>
         </div>
-        <div class="orbit orbit-4">
-          <div class="planet planet-4"></div>
-        </div>
       </div>
       <h2 class="loading-text">Loading Portfolio...</h2>
       <div class="loading-progress">
@@ -38,7 +35,7 @@
     <div class="navbar-brand">
       <a href="#">Nattinun.Kanp</a>
     </div>
-    <div class="hamburger-menu" id="hamburgerMenu">
+    <div class="hamburger-menu" id="hamburgerMenu" onclick="toggleMenu()" role="button" aria-label="Toggle navigation menu" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ') toggleMenu()">
       <span></span>
       <span></span>
       <span></span>
@@ -63,7 +60,7 @@
   <!-- About Me Popup -->
   <div id="aboutPopup" class="popup-overlay">
     <div class="popup-content">
-      <span class="close-btn">&times;</span>
+      <span class="close-btn" onclick="closeAboutPopup()" role="button" aria-label="Close about popup" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ') closeAboutPopup()">&times;</span>
       <div class="popup-body">
         <img src="profile-image.jpg" alt="Profile" class="profile-image">
         <h2 class="popup-title">About me</h2>
@@ -132,7 +129,7 @@
   <!-- Contact Popup -->
   <div id="contactPopup" class="popup-overlay">
     <div class="popup-content">
-      <span class="close-btn">&times;</span>
+      <span class="close-btn" onclick="closeContactPopup()" role="button" aria-label="Close contact popup" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ') closeContactPopup()">&times;</span>
       <div class="popup-body">
         <h2 class="popup-title">Let's Connect</h2>
         
@@ -197,7 +194,7 @@
   <!-- Events Popup -->
   <div id="eventsPopup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="eventsTitle">
     <div class="popup-content">
-      <span class="close-btn" aria-label="Close">&times;</span>
+      <span class="close-btn" onclick="closeEventsPopup()" role="button" aria-label="Close events popup" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ') closeEventsPopup()">&times;</span>
       <div class="popup-body">
         <h2 class="popup-title" id="eventsTitle">Events & Activities</h2>
         
@@ -315,13 +312,10 @@
   style="width: 400px; height: 400px;">
 </model-viewer>
 
-
-  <canvas id="canvas"></canvas>
-
   <!-- Projects Popup -->
   <div id="projectsPopup" class="popup-overlay" role="dialog" aria-modal="true" aria-labelledby="projectsTitle">
     <div class="popup-content">
-      <span class="close-btn" aria-label="Close">&times;</span>
+      <span class="close-btn" onclick="closeProjectsPopup()" role="button" aria-label="Close projects popup" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' ') closeProjectsPopup()">&times;</span>
       <div class="popup-body">
         <h2 class="popup-title" id="projectsTitle">Projects</h2>
 
